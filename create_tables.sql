@@ -71,7 +71,13 @@ CREATE TABLE public.users (
 	CONSTRAINT users_pkey PRIMARY KEY (userid)
 );
 
-
-
-
-
+CREATE TABLE public."time" (
+	start_time varchar(256) NOT NULL,
+	"hour" int4,
+	"day" int4,
+	week int4,
+	"month" varchar(256),
+	"year" int4,
+	weekday varchar(256),
+	CONSTRAINT time_pkey PRIMARY KEY (start_time)
+) ;
