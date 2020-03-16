@@ -3,7 +3,11 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class DataQualityOperator(BaseOperator):
-
+    """
+    Data Quality Operator
+    ---------------------
+    Checks tables to make sure they have at least one record in them.
+    """
     ui_color = '#89DA59'
 
     @apply_defaults
@@ -11,7 +15,14 @@ class DataQualityOperator(BaseOperator):
                  redshift_conn_id="",
                  tables=[],
                  *args, **kwargs):
+        '''
+        Data Quality Operator Constructor
 
+        Arguments:
+        ----------
+        redshift_conn_id - id for redshift connection\n
+        tables - list of db tables to quality check \n\
+        '''
         super(DataQualityOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
         self.tables = tables

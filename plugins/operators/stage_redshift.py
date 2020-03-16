@@ -5,6 +5,11 @@ from airflow.utils.decorators import apply_defaults
 
 
 class StageToRedshiftOperator(BaseOperator):
+    """
+    Stage data from S3 to Redshift Operator
+    -----------------------
+    Operator that loads data from S3 to Redshift
+    """    
     ui_color = '#358140'
     copy_sql = """
         COPY {}
@@ -27,7 +32,19 @@ class StageToRedshiftOperator(BaseOperator):
         ignore_headers=1,
         *args, **kwargs
     ):
+        '''
+        Fact table loader
 
+        Arguments:
+        ----------
+        redshift_conn_id - id for redshift connection\n
+        table - db table into which data will be inserted \n\
+        s3_bucket - bucket in s3 from which to read data \n\
+        s3_key - key in bucket from which to read data \n\
+        aws_credentials_id - credentials from aws to use to read data \n\
+        ignore_headers - whether to ignore headers in data reading \n\
+        json_path - additional information about table in json format \n\
+        '''
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
         self.table = table
         self.redshift_conn_id = redshift_conn_id

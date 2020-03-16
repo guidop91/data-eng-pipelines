@@ -3,6 +3,11 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class LoadDimensionOperator(BaseOperator):
+    """
+    Load Dimension Operator
+    -----------------------
+    Operator that loads data into dimension tables
+    """
     ui_color = '#80BD9E'
     sql = """
         INSERT INTO {}
@@ -16,7 +21,15 @@ class LoadDimensionOperator(BaseOperator):
                  table="",
                  sql_query="",
                  *args, **kwargs):
+        '''
+        Dimension table loader
 
+        Arguments:
+        ----------
+        redshift_conn_id - id for redshift connection\n
+        table - db table into which data will be inserted \n\
+        sql_query - query to run to insert data \n\
+        '''
         super(LoadDimensionOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
         self.table = table
