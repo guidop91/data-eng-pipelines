@@ -89,3 +89,9 @@ connections for AWS and Redshift.
     - Password: Enter the password you created when launching your Redshift cluster.
     - Port: Enter 5439.
     ![redshift connection example](img/connection-redshift.png)
+
+Go to your Redshift cluster and make a connection to the database in the Query
+Editor. Once connected, execute every `CREATE` query in the `create_tables.sql` 
+module. Once this is finished, go to the Airflow dashboard and turn on the 
+DAG. The Pipeline should start momentarily, and take a few moments to add
+data to the database. 
